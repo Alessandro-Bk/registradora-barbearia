@@ -1,175 +1,112 @@
-/* Estilos gerais */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
 body {
     background-color: #f5f5f5;
-    color: #333;
-    padding: 10px;
+}
+
+header {
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.menu {
+    cursor: pointer;
+    position: relative;
+    font-size: 20px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    color: black;
+    min-width: 120px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.dropdown a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+.menu:hover .dropdown {
+    display: block;
 }
 
 .container {
-    max-width: 100%;
-    margin: 0 auto;
+    background-color: #c07a1d;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #222;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    margin-bottom: 15px;
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+form select,
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
     border-radius: 5px;
 }
 
-header h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-/* Seção principal de registro */
-.register-section {
-    background-color: #e67e22; /* Laranja como na referência */
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-/* Estilo para as linhas de input */
-.date-section, .service-row, .payment-row, .total-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-label {
-    font-weight: bold;
-    width: 40%;
-    text-align: right;
-    padding-right: 10px;
-}
-
-input, select {
-    width: 60%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    font-size: 16px; /* Tamanho bom para toque em mobile */
-}
-
-/* Botão de registro */
-.register-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#register-button {
-    background-color: #3498db; /* Azul como na referência */
+button {
+    width: 100%;
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 10px;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    width: 80%;
-    max-width: 300px;
+    margin-top: 10px;
 }
 
-#register-button:hover {
-    background-color: #2980b9;
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Seção de resumo do dia */
-.summary-section {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-.day-total {
+.fechamento {
+    background-color: #f0f0f0;
+    margin-top: 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    background-color: #f0e6d2;
-    padding: 10px;
+    font-weight: bold;
     border-radius: 5px;
 }
 
-.day-total label {
-    font-weight: bold;
-    color: #333;
-}
-
-#day-total-value {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/* Tabela de serviços */
-.day-services h3, .weekly-summary h3 {
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #e67e22;
-    color: white;
-}
-
-.no-records {
-    text-align: center;
-    color: #777;
-    font-style: italic;
-}
-
-/* Seção de fechamento semanal */
-.weekly-summary {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    display: none; /* Inicialmente oculto */
-}
-
-#weekly-table tfoot {
-    font-weight: bold;
-}
-
-/* Responsividade para telas muito pequenas */
-@media (max-width: 360px) {
-    label {
-        font-size: 14px;
-    }
-    
-    input, select {
-        font-size: 14px;
-    }
-    
-    th, td {
-        padding: 8px 5px;
-        font-size: 14px;
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
     }
 }

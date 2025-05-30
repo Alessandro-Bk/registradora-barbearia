@@ -1,125 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registradora Barbearia</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Cabeçalho -->
-        <header>
-            <h1>REGISTRADORA BARBEARIA</h1>
-        </header>
 
-        <!-- Seção principal de registro -->
-        <main class="register-section">
-            <!-- Data atual -->
-            <div class="date-section">
-                <label for="current-date">DATA:</label>
-                <input type="text" id="current-date" readonly>
+    <header>
+        <div class="logo">REGISTRADORA BARBEARIA</div>
+        <div class="menu">
+            &#8942;
+            <div class="dropdown">
+                <a href="#">Registro</a>
+                <a href="#">Serviços</a>
+                <a href="#">Dashboard</a>
             </div>
+        </div>
+    </header>
 
-            <!-- Seleção de serviços -->
-            <div class="services-section">
-                <div class="service-row">
-                    <label for="service1">SERVIÇO 1:</label>
-                    <select id="service1">
-                        <option value="">Selecione um serviço</option>
-                        <!-- Opções serão preenchidas via JavaScript -->
-                    </select>
-                </div>
-                <div class="service-row">
-                    <label for="service2">SERVIÇO 2:</label>
-                    <select id="service2">
-                        <option value="">Selecione um serviço</option>
-                        <!-- Opções serão preenchidas via JavaScript -->
-                    </select>
-                </div>
-                <div class="service-row">
-                    <label for="service3">SERVIÇO 3:</label>
-                    <select id="service3">
-                        <option value="">Selecione um serviço</option>
-                        <!-- Opções serão preenchidas via JavaScript -->
-                    </select>
-                </div>
-            </div>
+    <main>
+        <div class="container">
+            <form id="form">
 
-            <!-- Forma de pagamento e valor total -->
-            <div class="payment-section">
-                <div class="payment-row">
-                    <label for="payment-method">FORMA DE PAG.:</label>
-                    <select id="payment-method">
+                <label>DATA:
+                    <input type="date" id="data">
+                </label>
+
+                <label>SERVIÇO 1:
+                    <select id="servico1">
+                        <option value="">Selecione um serviço</option>
+                        <option value="Corte Simples">Corte Simples</option>
+                        <option value="Sobrancelha">Sobrancelha</option>
+                        <option value="Barba">Barba</option>
+                        <option value="Corte Degradê">Corte Degradê</option>
+                    </select>
+                </label>
+
+                <label>SERVIÇO 2:
+                    <select id="servico2">
+                        <option value="">Selecione um serviço</option>
+                        <option value="Corte Simples">Corte Simples</option>
+                        <option value="Sobrancelha">Sobrancelha</option>
+                        <option value="Barba">Barba</option>
+                        <option value="Corte Degradê">Corte Degradê</option>
+                    </select>
+                </label>
+
+                <label>SERVIÇO 3:
+                    <select id="servico3">
+                        <option value="">Selecione um serviço</option>
+                        <option value="Corte Simples">Corte Simples</option>
+                        <option value="Sobrancelha">Sobrancelha</option>
+                        <option value="Barba">Barba</option>
+                        <option value="Corte Degradê">Corte Degradê</option>
+                    </select>
+                </label>
+
+                <label>FORMA DE PAG.:
+                    <select id="pagamento">
                         <option value="">Selecione</option>
-                        <option value="Dinheiro">Dinheiro</option>
                         <option value="PIX">PIX</option>
-                        <option value="Débito">Débito</option>
-                        <option value="Crédito">Crédito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão">Cartão</option>
                     </select>
-                </div>
-                <div class="total-row">
-                    <label for="total-value">VALOR TOTAL:</label>
-                    <input type="text" id="total-value" readonly value="R$ 0,00">
-                </div>
-            </div>
+                </label>
 
-            <!-- Botão de registro -->
-            <div class="register-button-container">
-                <button id="register-button">REGISTRAR</button>
-            </div>
-        </main>
+                <label>VALOR TOTAL:
+                    <input type="text" id="valorTotal" value="R$ 0,00" readonly>
+                </label>
 
-        <!-- Seção de resumo do dia -->
-        <section class="summary-section">
-            <div class="day-total">
-                <label>FECHAMENTO:</label>
-                <span id="day-total-value">R$ 0,00</span>
-            </div>
+                <button type="button" id="registrar">REGISTRAR</button>
+            </form>
 
-            <!-- Tabela de serviços do dia -->
-            <div class="day-services">
-                <h3>Serviços realizados</h3>
-                <table id="services-table">
-                    <thead>
-                        <tr>
-                            <th>Serviços Realizados</th>
-                            <th>Forma Pag.</th>
-                            <th>Valor total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="services-list">
-                        <!-- Registros serão inseridos aqui via JavaScript -->
-                        <tr class="no-records">
-                            <td colspan="3">Nenhum registro hoje</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="fechamento">
+                <span>FECHAMENTO:</span>
+                <span id="fechamentoValor">R$ 0,00</span>
             </div>
-        </section>
-
-        <!-- Seção de fechamento semanal (inicialmente oculta) -->
-        <section class="weekly-summary" id="weekly-summary">
-            <h3>Fechamento Semanal</h3>
-            <table id="weekly-table">
-                <thead>
-                    <tr>
-                        <th>Dia</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="weekly-list">
-                    <!-- Será preenchido via JavaScript -->
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total da Semana</th>
-                        <th id="week-total">R$ 0,00</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-    </div>
+        </div>
+    </main>
 
     <script src="app.js"></script>
 </body>

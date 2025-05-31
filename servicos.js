@@ -28,9 +28,28 @@ const config = {
   },
 };
 
-// Cria o gráfico
 const ctx = document.getElementById("graficoFormas").getContext("2d");
 const graficoFormas = new Chart(ctx, config);
+
+// Preenche a tabela com dados do localStorage
+function carregarTabela() {
+  const registros = JSON.parse(localStorage.getItem("registros")) || [];
+  const tbody = document.querySelector("#tabelaServicos tbody");
+  tbody.innerHTML = ""; // Limpa antes de preencher
+
+  registros.forEach((reg) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${reg.data}</td>
+      <td>${reg.servicos}</td>
+      <td>${reg.pagamento}</td>
+      <td>R$ ${parseFloat(reg.valor).toFixed(2).replace(".", ",")}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
 
 // Atualiza dados no gráfico
 function atualizarGrafico(pix, dinheiro, cartao) {
@@ -83,12 +102,13 @@ function atualizarTotais() {
 // Limpa dados
 function limparDados() {
   if (confirm("Deseja realmente limpar todos os dados?")) {
-    localStorage.clear();
+    localStorage.removeItem("registros");
     location.reload();
   }
 }
 
 // Atualiza na abertura da página
 document.addEventListener("DOMContentLoaded", () => {
+  carregarTabela();
   atualizarTotais();
 });

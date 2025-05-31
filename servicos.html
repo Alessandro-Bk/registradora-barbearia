@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serviços - Registradora Barbearia</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Mantendo seu CSS atual -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Gráfico -->
+  </head>
+  <body>
+    <header>
+      <h1>REGISTRADORA BARBEARIA</h1>
+      <nav>
+        <button onclick="window.location.href='index.html'">Registro</button>
+        <button onclick="window.location.href='servicos.html'">Serviços</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tabela-servicos">
+        <h2>Serviços Realizados</h2>
+        <table id="tabelaServicos">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Serviços</th>
+              <th>Forma Pag.</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dados inseridos aqui via JavaScript -->
+          </tbody>
+        </table>
+
+        <div class="totais">
+          <p><strong>PIX:</strong> R$ <span id="totalPix">0,00</span></p>
+          <p>
+            <strong>Dinheiro:</strong> R$ <span id="totalDinheiro">0,00</span>
+          </p>
+          <p><strong>Cartão:</strong> R$ <span id="totalCartao">0,00</span></p>
+          <p>
+            <strong>Total Geral:</strong> R$ <span id="totalGeral">0,00</span>
+          </p>
+        </div>
+
+        <button onclick="limparDados()" class="botao-limpar">LIMPAR</button>
+      </section>
+
+      <section class="grafico">
+        <canvas id="graficoFormas"></canvas>
+      </section>
+    </main>
+
+    <script src="servicos.js"></script>
+    <!-- Script específico dessa página -->
+  </body>
+</html>

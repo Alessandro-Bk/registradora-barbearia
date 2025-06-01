@@ -13,8 +13,6 @@ const servicoValores = {
   ALISANTE: 50,
 };
 
-let fechamento = 0;
-
 function calcularTotal() {
   const serv1 = document.getElementById("servico1").value;
   const serv2 = document.getElementById("servico2").value;
@@ -27,6 +25,18 @@ function calcularTotal() {
 
   document.getElementById("valorTotal").value = `R$ ${total.toFixed(2)}`;
   return total;
+}
+
+function atualizarFechamento() {
+  const registros = JSON.parse(localStorage.getItem("registros")) || [];
+
+  const total = registros.reduce((soma, item) => {
+    return soma + parseFloat(item.valor);
+  }, 0);
+
+  document.getElementById("fechamentoValor").innerText = `R$ ${total.toFixed(
+    2
+  )}`;
 }
 
 document.getElementById("servico1").addEventListener("change", calcularTotal);
@@ -59,15 +69,11 @@ document.getElementById("registrar").addEventListener("click", () => {
     valor: total.toFixed(2),
   };
 
-  // Salvar no localStorage
   const registros = JSON.parse(localStorage.getItem("registros")) || [];
   registros.push(registro);
   localStorage.setItem("registros", JSON.stringify(registros));
 
-  fechamento += total;
-  document.getElementById(
-    "fechamentoValor"
-  ).innerText = `R$ ${fechamento.toFixed(2)}`;
+  atualizarFechamento();
 
   // Limpar os campos
   document.getElementById("servico1").value = "";
@@ -76,3 +82,6 @@ document.getElementById("registrar").addEventListener("click", () => {
   document.getElementById("pagamento").value = "";
   document.getElementById("valorTotal").value = "R$ 0,00";
 });
+
+// Executa assim que carregar a página
+atualizarFechamento();

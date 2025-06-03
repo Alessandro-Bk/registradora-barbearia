@@ -1,16 +1,17 @@
 const servicoValores = {
   PEZINHO: 10,
   MÁQUINA: 15,
-  DISFARÇADO: 25,
+  DISFARÇADO: 20,
   "MÁQUINA E TESOURA": 25,
-  TESOURA: 20,
+  TESOURA: 30,
   "NAVALHADO TOTAL": 20,
   "NAVALHADO DISFARÇADO": 30,
-  SOBRANCELHA: 10,
-  LUZES: 80,
-  "BARBA TOTAL": 20,
+  SOBRANCELHA: 05,
+  LUZES: 30,
+  "BARBA TOTAL": 10,
   "BARBA MODELADA": 15,
-  ALISANTE: 50,
+  ALISANTE: 10,
+  "PIGMENTAÇAO": 05,
 };
 
 function calcularTotal() {

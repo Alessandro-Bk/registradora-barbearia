@@ -62,50 +62,48 @@ function atualizarTotais() {
   const linhas = document.querySelectorAll("#tabelaServicos tbody tr");
   let totalPix = 0;
   let totalDinheiro = 0;
-  let totalCredito = 0; // Variável para somar crédito
-  let totalDebito = 0; // Variável para somar débito
+  let totalCredito = 0;
+  let totalDebito = 0;
   let totalGeral = 0;
 
   linhas.forEach((linha) => {
-    // Pega a forma de pagamento, converte para minúscula e remove acentos para comparar
+    // Verifica se a linha tem as células esperadas (evita erros se a tabela estiver vazia ou malformada)
+    if (linha.children.length < 4) return;
+
+    // Pega a forma de pagamento, converte para minúscula e remove acentos
     const formaPagRaw = linha.children[2].textContent.trim().toLowerCase();
-    const formaPag = formaPagRaw.normalize("NFD").REPLACE(/ [^\w\s]/gi,''); // Remove acentos e caracteres especiais
-    const valor =
-      parseFloat(
-        linha.children[3].textContent.replace("R$", "").replace(",", ".")
-      ) || 0;
+    // CORREÇÃO: Usar .replace() em minúsculo e ajustar a expressão regular
+    const formaPag = formaPagRaw.normalize("NFD").replace(/[^a-z0-9]/gi, ''); // Remove acentos e caracteres não alfanuméricos
+
+    const valorTexto = linha.children[3].textContent.replace("R$", "").replace(",", ".").trim();
+    const valor = parseFloat(valorTexto) || 0;
 
     totalGeral += valor;
 
-    //  soma nos totais corretos
+    // CORREÇÃO: Adicionar a soma para credito e debito
     if (formaPag === "pix") {
       totalPix += valor;
     } else if (formaPag === "dinheiro") {
       totalDinheiro += valor;
-    } else if (formaPag === "credito") { // Comparar 'credito' (sem acento)
-    } else if (formaPag === "debito") { // Comparar 'debito' (sem acento)
-      totalCartao += valor;
+    } else if (formaPag === "credito") { // Compara 'credito'
+      totalCredito += valor; // Adiciona ao totalCredito
+    } else if (formaPag === "debito") { // Compara 'debito'
+      totalDebito += valor; // Adiciona ao totalDebito
     }
   });
 
-  document.getElementById("totalPix").textContent = totalPix
-    .toFixed(2)
-    .replace(".", ",");
-  document.getElementById("totalDinheiro").textContent = totalDinheiro
-    .toFixed(2)
-    .replace(".", ",");
-  document.getElementById("totalCrédito").textContent = totalCredito
-    .toFixed(2)
-    .replace(".", ",");
-  document.getElementById("totalDébito").textContent = totalDebito
-    .toFixed(2)
-    .replace(".", ",");
-  document.getElementById("totalGeral").textContent = totalGeral
-    .toFixed(2)
-    .replace(".", ",");
+  // Atualiza os valores na tela usando os IDs corretos do HTML
+  document.getElementById("totalPix").textContent = totalPix.toFixed(2).replace(".", ",");
+  document.getElementById("totalDinheiro").textContent = totalDinheiro.toFixed(2).replace(".", ",");
+  // Garante que os IDs com acento sejam usados para atualizar a tela
+  document.getElementById("totalCrédito").textContent = totalCredito.toFixed(2).replace(".", ",");
+  document.getElementById("totalDébito").textContent = totalDebito.toFixed(2).replace(".", ",");
+  document.getElementById("totalGeral").textContent = totalGeral.toFixed(2).replace(".", ",");
 
+  // Atualiza o gráfico (se necessário)
   atualizarGrafico(totalPix, totalDinheiro, totalCredito, totalDebito);
 }
+
 
 // Limpa dados
 function limparDados() {

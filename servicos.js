@@ -1,6 +1,6 @@
 // Dados do gráfico
 const dadosPagamento = {
-  labels: ["Pix", "Dinheiro", "Cartão"],
+  labels: ["Pix", "Dinheiro", "Crédito","Débito"],
   datasets: [
     {
       label: "Formas de Pagamento",
@@ -52,8 +52,8 @@ function carregarTabela() {
 }
 
 // Atualiza dados no gráfico
-function atualizarGrafico(pix, dinheiro, cartao) {
-  graficoFormas.data.datasets[0].data = [pix, dinheiro, cartao];
+function atualizarGrafico(pix, dinheiro, credito, debito) {
+  graficoFormas.data.datasets[0].data = [pix, dinheiro, credito, debito];
   graficoFormas.update();
 }
 
@@ -62,7 +62,8 @@ function atualizarTotais() {
   const linhas = document.querySelectorAll("#tabelaServicos tbody tr");
   let totalPix = 0;
   let totalDinheiro = 0;
-  let totalCartao = 0;
+  let totalCredito = 0;
+  let totalDebito = 0;
   let totalGeral = 0;
 
   linhas.forEach((linha) => {
@@ -78,7 +79,8 @@ function atualizarTotais() {
       totalPix += valor;
     } else if (formaPag === "dinheiro") {
       totalDinheiro += valor;
-    } else if (formaPag === "cartao" || formaPag === "cartão") {
+    } else if (formaPag === "credito" || formaPag === "credito") {
+    } else if (formaPag === "debito" || formaPag === "debito") {
       totalCartao += valor;
     }
   });
@@ -89,14 +91,17 @@ function atualizarTotais() {
   document.getElementById("totalDinheiro").textContent = totalDinheiro
     .toFixed(2)
     .replace(".", ",");
-  document.getElementById("totalCartao").textContent = totalCartao
+  document.getElementById("totalCredito").textContent = totalCredito
+    .toFixed(2)
+    .replace(".", ",");
+  document.getElementById("totalDebito").textContent = totalDebito
     .toFixed(2)
     .replace(".", ",");
   document.getElementById("totalGeral").textContent = totalGeral
     .toFixed(2)
     .replace(".", ",");
 
-  atualizarGrafico(totalPix, totalDinheiro, totalCartao);
+  atualizarGrafico(totalPix, totalDinheiro, totalCredito, totalDebito);
 }
 
 // Limpa dados

@@ -11,7 +11,7 @@ const servicoValores = {
   "BARBA TOTAL": 10,
   "BARBA MODELADA": 15,
   ALISANTE: 10,
-  PIGMENTAÇAO: 05,
+  "PIGMENTAÇÃO": 05,
 };
 
 function calcularTotal() {
